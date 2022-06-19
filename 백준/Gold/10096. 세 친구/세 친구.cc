@@ -3,16 +3,19 @@
 using namespace std;
 
 string solve(int _N, string _U) {
-    // U를 만들 수 없는 경우
-    if (_N % 2 == 0) return "NOT POSSIBLE";
+    // 문자열의 길이가 짝수면 U를 만들 수 없는 경우
+    if (!(_N & 1)) return "NOT POSSIBLE";
+
+    string left = _U.substr(0, _N / 2);
+    string right = _U.substr(_N / 2 + 1, _N / 2);
 
     // U를 만들 수 있는 문자열 S가 유일하지 않는 경우
-    if ((_U.substr(0, _N / 2) == _U.substr(_N / 2, _N / 2))
-        && (_U.substr(1, _N / 2) == _U.substr(_N / 2 + 1, _N / 2))
-        && (_U.substr(0, _N / 2) != _U.substr(1, _N / 2))) return "NOT UNIQUE";
+    if ((left == _U.substr(_N / 2, _N / 2))
+        && (_U.substr(1, _N / 2) == right)
+        && (left != _U.substr(1, _N / 2))) return "NOT UNIQUE";
 
     // 문자를 가운데에 삽입했다고 가정하는 경우
-    if (_U.substr(0, _N / 2) == _U.substr(_N / 2 + 1, _N / 2)) return _U.substr(0, _N / 2);
+    if (left == right) return left;
     
     // 문자를 왼쪽에 삽입했다고 가정하는 경우
     if (_U[_N / 2] == _U[_N - 1]) {
@@ -22,7 +25,7 @@ string solve(int _N, string _U) {
             else i++;
             if (diff >= 2) return "NOT POSSIBLE";
         }
-        return _U.substr(_N / 2 + 1, _N / 2);
+        return right;
     }
 
     // 문자를 오른쪽에 삽입했다고 가정하는 경우
@@ -33,8 +36,10 @@ string solve(int _N, string _U) {
             else i++;
             if (diff >= 2) return "NOT POSSIBLE";
         }
-        return _U.substr(0, _N / 2);
+        return left;
     }
+
+    else return "NOT POSSIBLE";
 }
 
 int main() {
