@@ -1,0 +1,13 @@
+def solution(n):
+    reverse = []
+    
+    while n != 0:
+        reverse.append(n % 3)
+        n //= 3
+    
+    sum = 0
+    for i in range(len(reverse)-1, -1, -1):
+        sum += pow(3, i) * reverse[len(reverse) - 1 - i]
+        
+    
+    return sum
