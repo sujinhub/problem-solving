@@ -38,8 +38,8 @@ int main() {
 				return 0;
 			}
 
-			if (nr < 0 || nc < 0 || nr >= N || nc >= M) continue;
-			if (map[nr][nc] == 0 || visited[nr][nc] == true) continue;
+			if (nr < 0 || nc < 0 || nr >= N || nc >= M
+				|| map[nr][nc] == 0 || visited[nr][nc] == true) continue;
 
 			visited[nr][nc] = true;
 			q.push({ nr,nc,dist + 1 });
