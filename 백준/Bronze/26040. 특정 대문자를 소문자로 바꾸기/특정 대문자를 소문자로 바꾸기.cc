@@ -17,7 +17,7 @@ int main() {
 	while (getline(ss, buf, ' ')) flag[buf[0] - 'A'] = true;
 	for (int i = 0; i < A.length(); i++)
 		if (flag[A[i] - 'A'] && isupper(A[i])) A[i] = tolower(A[i]);
-
 	cout << A;
+
 	return 0;
 }
