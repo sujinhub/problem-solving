@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <sstream>
+#include <string>
 using namespace std;
 
 bool flag[26];
@@ -13,10 +15,9 @@ int main() {
 	istringstream ss(B);
 
 	while (getline(ss, buf, ' ')) flag[buf[0] - 'A'] = true;
-	for (int i = 0; i < A.length(); i++) {
-		if (flag[A[i] - 'A'] && A[i] < 'a') cout << (char)(A[i] + 'a' - 'A');
-		else cout << (char)A[i];
-	}
+	for (int i = 0; i < A.length(); i++)
+		if (flag[A[i] - 'A'] && isupper(A[i])) A[i] = tolower(A[i]);
 
+	cout << A;
 	return 0;
 }
